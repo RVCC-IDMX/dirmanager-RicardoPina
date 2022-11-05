@@ -22,12 +22,11 @@ async function listDirContents(filepath: string) {
     const files = await fs.promises.readdir(filepath);
     const detailedFilesPromises = files.map(async (file: string) => {
       let fileDetails = await fs.promises.lstat(path.resolve(filepath, file));
-      const { size, birthtime, isDirectory } = fileDetails;
+      const { size, birthtime } = fileDetails;
       return {
         filename: file,
         'size(KB)': size,
         created_at: birthtime,
-        directory: isDirectory,
       };
     });
     const detailedFiles = await Promise.all(detailedFilesPromises);
@@ -59,4 +58,8 @@ if (options.mkdir) {
 }
 if (options.touch) {
   createFile(path.resolve(__dirname, options.touch));
+}
+
+if (!process.argv.slice(2).length) {
+  program.outputHelp();
 }
