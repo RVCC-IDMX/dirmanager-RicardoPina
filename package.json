@@ -1,6 +1,6 @@
 {
   "name": "dirmanager-ricardopina",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "**NOTE:** The .gitignore file has been modified so that the dist folder is pushed.",
   "main": "dist/index.js",
   "bin": {
