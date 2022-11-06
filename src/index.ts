@@ -1,5 +1,7 @@
 #! /usr/bin/env node
 
+import { type } from 'os';
+
 const { Command } = require('commander');
 const figlet = require('figlet');
 const fs = require('fs');
@@ -25,6 +27,7 @@ async function listDirContents(filepath: string) {
     const detailedFilesPromises = files.map(async (file: string) => {
       let fileDetails = await fs.promises.lstat(path.resolve(filepath, file));
       const { size, birthtime } = fileDetails;
+
       return {
         filename: file,
         'size(KB)': size,
